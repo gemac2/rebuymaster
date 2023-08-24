@@ -1,8 +1,8 @@
 package actions_test
 
 import (
-	"testing"
 	"rebuymaster/app"
+	"testing"
 
 	"github.com/gobuffalo/suite/v4"
 )

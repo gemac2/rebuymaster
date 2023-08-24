@@ -1,0 +1,35 @@
+<div class="order-overview pt-3">
+    <h2 class="line-after label mb-3 d-block font-weight-bold">Overview</h2>
+    <div class="order-items d-flex py-2">
+        <div class="lists d-flex w-50">
+            <ul class="order-details-labels list-unstyled label-text-color">
+                <li>Order Type</li>
+                <li class="pt-2">Contract Name</li>
+                <li class="pt-2">Order Price</li>
+                <li class="pt-2">Leverage</li>
+            </ul>
+            <ul class="order-details-values list-unstyled px-5">
+                <li><%= order.OrderType %></li>
+                <li class="pt-2"><%= order.CurrencyName %>USDT</li>
+                <li class="pt-2"><%= order.OrderPrice %></li>
+                <li class="pt-2"><%= order.Leverage %>x</li>
+            </ul>
+        </div>
+        <div class="lists d-flex w-50">
+            <ul class="order-details-labels list-unstyled label-text-color w-35">
+                <li>Currency Percentage</li>
+                <li class="pt-2">Buyback Percentage</li>
+                <li class="pt-2">Currency Quantity</li>
+                <li class="pt-2">Stop Loss</li>
+                <li class="pt-2">Date Created</li>
+            </ul>
+            <ul class="order-details-values list-unstyled px-4">
+                <li><%= order.CurrencyPercentage %></li>
+                <li class="pt-2"><%= order.BuybackPercentage %></li>
+                <li class="pt-2"><%= order.CurrencyQuantity %></li>
+                <li class="pt-2"><%= order.StopLoss %> USDT</li>
+                <li class="pt-2"><%= order.CreatedAt.Format("01/02/2006") %></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="row mt-4">
+    <div class="col">
+            <div class="d-flex justify-content-between">
+                <label for="" class="text-white">Order Type</label>
+                <select name="OrderType" id="" class="w-75 h-40px px-2 rounded">
+                    <option value="select" disabled selected>Select</option>
+                    <option value="Long">Long</option>
+                    <option value="Short">Short</option>
+                </select>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <label for="" class="text-white">Currency Name</label>
+                <div class="input-group w-75 mb-3 h-40px">
+                    <span class="input-group-text" id="basic-addon1">¢</span>
+                    <input type="text" name="CurrencyName" class="form-control input-uppercase" placeholder="Name" aria-label="Order" aria-describedby="basic-addon1">
+                </div> 
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <label for="" class="text-white">Buyback Percentage</label>
+                <div class="input-group w-75 mb-3 h-40px">
+                    <span class="input-group-text" id="basic-addon1">%</span>
+                    <input type="text" name="BuybackPercentage" class="form-control only-numbers" data-decimals="1" data-padzeros="true" placeholder="Buyback" aria-label="Order" aria-describedby="basic-addon1">
+                </div> 
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <label for="" class="text-white">Currency Percentage</label>
+                <div class="input-group w-75 mb-3 h-40px">
+                    <span class="input-group-text" id="basic-addon1">%</span>
+                    <input type="text" name="CurrencyPercentage" class="form-control only-numbers" data-decimals="1" data-padzeros="true" placeholder="Currency" aria-label="Order" aria-describedby="basic-addon1">
+                </div> 
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <label for="" class="text-white">Stop Loss</label>
+                <div class="input-group w-75 mb-3 h-40px">
+                    <span class="input-group-text" id="basic-addon1">$</span>
+                    <input type="text" name="StopLoss" class="form-control only-numbers" data-decimals="2" data-padzeros="true" placeholder="Stop Loss" aria-label="Order" aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <label for="" class="text-white">Order Price</label>
+                <div class="input-group w-75 mb-3 h-40px">
+                    <span class="input-group-text" id="basic-addon1">$</span>
+                    <input type="text" name="OrderPrice" class="form-control only-numbers" data-decimals="5" data-padzeros="true" placeholder="Initial Price" aria-label="Order" aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <label for="" class="text-white">Currency Quantity</label>
+                <div class="input-group w-75 mb-3 h-40px">
+                    <span class="input-group-text" id="basic-addon1">#</span>
+                    <input type="text" name="CurrencyQuantity" class="form-control only-numbers" data-decimals="3" data-padzeros="true" placeholder="Currency" aria-label="Order" aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <label for="" class="text-white">Leverage</label>
+                <div class="input-group w-75 mb-3 h-40px">
+                    <span class="input-group-text" id="basic-addon1">#</span>
+                    <input type="text" name="Leverage" class="form-control only-numbers" data-decimals="0" data-padzeros="true" placeholder="Leverage" aria-label="Order" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="w-100 h-40px mt-4 d-flex flex-row-reverse">
+                <button type="submit" form="OrderForm" class="btn btn-secondary">Create Order</button>
+            </div>
+    </div>
+</div>

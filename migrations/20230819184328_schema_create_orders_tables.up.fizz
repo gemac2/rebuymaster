@@ -1,0 +1,12 @@
+create_table("orders") {
+	t.Column("id", "uuid", {"primary": true})
+	t.Column("order_type", "string", {})
+	t.Column("currency_name", "string", {})
+    t.Column("buyback_percentage", "float", {})
+    t.Column("currency_percentage", "float", {})
+    t.Column("stop_loss", "float", {})
+    t.Column("order_price", "float", {})
+    t.Column("currency_quantity", "float", {})
+	t.Column("leverage", "integer", {})
+	t.Timestamps()
+}

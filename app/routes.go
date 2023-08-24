@@ -3,20 +3,29 @@ package app
 import (
 	"net/http"
 
-	"rebuymaster/public"
-	"rebuymaster/app/actions/home"
+	"rebuymaster/app/actions/buyback"
+	"rebuymaster/app/actions/order"
 	"rebuymaster/app/middleware"
+	"rebuymaster/public"
 
 	"github.com/gobuffalo/buffalo"
 )
 
 // SetRoutes for the application
-func setRoutes(root *buffalo.App) {
-	root.Use(middleware.RequestID)
-	root.Use(middleware.Database)
-	root.Use(middleware.ParameterLogger)
-	root.Use(middleware.CSRF)
+func setRoutes(app *buffalo.App) {
+	app.Use(middleware.RequestID)
+	app.Use(middleware.Database)
+	app.Use(middleware.ParameterLogger)
+	app.Use(middleware.CSRF)
 
-	root.GET("/", home.Index)
-	root.ServeFiles("/", http.FS(public.FS()))
+	orders := app.Group("/orders")
+	orders.GET("/", order.List)
+	orders.GET("/new", order.New)
+	orders.GET("/{order_id:[-0-9a-z]+}/details/", order.Show)
+	orders.POST("/create", order.Create)
+
+	buybacks := app.Group("/buybacks")
+	buybacks.GET("/", buyback.List)
+
+	app.ServeFiles("/", http.FS(public.FS()))
 }

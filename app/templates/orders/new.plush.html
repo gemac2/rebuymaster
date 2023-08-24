@@ -1,0 +1,5 @@
+<div class="">
+    <%= form_for(order, {action: "/orders/create", id: "OrderForm", method: "POST"}) { %>
+        <%= partial("orders/form.plush.html") %>
+    <% } %>
+</div>
