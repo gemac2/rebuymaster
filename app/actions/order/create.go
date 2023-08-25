@@ -25,5 +25,5 @@ func Create(c buffalo.Context) error {
 
 	c.Flash().Add("success", "Order created successfully")
 
-	return c.Redirect(http.StatusSeeOther, "/orders")
+	return c.Redirect(http.StatusSeeOther, "/orders/%v/details", order.ID)
 }

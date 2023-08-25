@@ -2,142 +2,153 @@ package models
 
 import (
 	"fmt"
+	"time"
+
+	"github.com/gofrs/uuid"
 )
 
-type Recompra struct {
-	Precio            float64
-	Cantidad          float64
-	Margen            float64
-	SumaMargen        float64
-	Promedio          float64
-	PrecioStopLoss    float64
-	Valor             float64
-	TotalMonedas      float64
-	PrecioLiquidacion float64
-	SumaValor         float64
+type Buyback struct {
+	ID               uuid.UUID `db:"id" json:"id"`
+	OrderID          uuid.UUID `db:"order_id" json:"order_id"`
+	Price            float64   `db:"price" json:"price"`
+	CurrencyAmount   float64   `db:"currency_amount" json:"currency_amount"`
+	Margin           float64   `db:"margin" json:"margin"`
+	MarginSum        float64   `db:"margin_sum" json:"margin_sum"`
+	Average          float64   `db:"average" json:"average"`
+	StopLossPrice    float64   `db:"stop_loss_price" json:"stop_loss_price"`
+	Value            float64   `db:"value" json:"value"`
+	TotalCurrency    float64   `db:"total_currency" json:"total_currency"`
+	LiquidationPrice float64   `db:"liquidation_price" json:"liquidation_price"`
+	ValueSum         float64   `db:"value_sum" json:"value_sum"`
+	CreatedAt        time.Time `db:"created_at" json:"created_at"`
+	UpdatedAt        time.Time `db:"updated_at" json:"updated_at"`
 }
 
-func GenerarRecompras(o Order) []Recompra {
-	recompras := make([]Recompra, 11)
-	porcentajeRecompras := o.BuybackPercentage
-	if o.OrderType == "long" {
-		porcentajeRecompras = -o.BuybackPercentage
+// Buybacks struct
+type Buybacks []Buyback
+
+func GenerateBuybacks(o Order) []Buyback {
+	buybacks := make([]Buyback, 11)
+	buybacksPercentage := o.BuybackPercentage
+	if o.OrderType == "Long" {
+		buybacksPercentage = -o.BuybackPercentage
 	}
 
 	if o.CurrencyPercentage == 100 {
-		precioPrimeraRecompra := o.OrderPrice * ((porcentajeRecompras / 100) + 1)
-		recompras[0] = Recompra{Precio: o.OrderPrice, Cantidad: o.CurrencyQuantity}
-		recompras[1] = Recompra{Precio: precioPrimeraRecompra, Cantidad: o.CurrencyQuantity}
+		precioPrimeraRecompra := o.OrderPrice * ((buybacksPercentage / 100) + 1)
+		buybacks[0] = Buyback{Price: o.OrderPrice, CurrencyAmount: o.CurrencyQuantity}
+		buybacks[1] = Buyback{Price: precioPrimeraRecompra, CurrencyAmount: o.CurrencyQuantity}
 
 		for i := 2; i < 11; i++ {
-			recompras[i].Precio = recompras[i-1].Precio * (1 + porcentajeRecompras/100)
-			recompras[i].Cantidad = recompras[i-1].Cantidad + recompras[i-1].Cantidad*(o.CurrencyPercentage/100)
+			buybacks[i].Price = buybacks[i-1].Price * (1 + buybacksPercentage/100)
+			buybacks[i].CurrencyAmount = buybacks[i-1].CurrencyAmount + buybacks[i-1].CurrencyAmount*(o.CurrencyPercentage/100)
 		}
 
-		poblarMargen(recompras, o.Leverage)
-		obtenerPrecioFinaldeCompras(recompras)
-		calcularPrecioStopLoss(o, recompras)
+		setMargin(buybacks, o.Leverage)
+		getBuybackFinalPrice(buybacks)
+		calculateStopLossPrice(o, buybacks)
 
-		return recompras
+		return buybacks
 	}
 
-	recompras[0] = Recompra{Precio: o.OrderPrice, Cantidad: o.CurrencyQuantity}
+	buybacks[0] = Buyback{Price: o.OrderPrice, CurrencyAmount: o.CurrencyQuantity}
 
 	for i := 1; i < 11; i++ {
-		recompras[i].Precio = recompras[i-1].Precio * (1 + porcentajeRecompras/100)
-		recompras[i].Cantidad = recompras[i-1].Cantidad + recompras[i-1].Cantidad*(o.CurrencyPercentage/100)
+		buybacks[i].Price = buybacks[i-1].Price * (1 + buybacksPercentage/100)
+		buybacks[i].CurrencyAmount = buybacks[i-1].CurrencyAmount + buybacks[i-1].CurrencyAmount*(o.CurrencyPercentage/100)
 	}
 
-	poblarMargen(recompras, o.Leverage)
-	obtenerPrecioFinaldeCompras(recompras)
-	calcularPrecioStopLoss(o, recompras)
+	setMargin(buybacks, o.Leverage)
+	getBuybackFinalPrice(buybacks)
+	calculateStopLossPrice(o, buybacks)
 
-	return recompras
+	return buybacks
 }
 
-func ImprimirRecompras(recompras []Recompra, tipoDeCompra string) {
-	for _, r := range recompras {
-		if tipoDeCompra == "short" {
-			if r.Precio < r.PrecioStopLoss {
-				fmt.Printf("Precio: %.4f, Cantidad: %.4f, Valor:%.4f, TotalMonedas:%.4f, Promedio: %.4f, PrecioStopLoss: %.4f\n", r.Precio, r.Cantidad, r.Valor, r.TotalMonedas, r.Promedio, r.PrecioStopLoss)
+func FilterBuybacksByStopLoss(buybacks []Buyback, orderType string) []Buyback {
+	var filteredBuybacks []Buyback
+	for _, r := range buybacks {
+		if orderType == "Short" {
+			if r.Price < r.StopLossPrice {
+				filteredBuybacks = append(filteredBuybacks, r)
 			}
 		}
 
-		if tipoDeCompra == "long" {
-			if r.Precio > r.PrecioStopLoss {
-				fmt.Printf("Precio: %.4f, Cantidad: %.4f, Valor:%.4f, TotalMonedas:%.4f, Promedio: %.4f, PrecioStopLoss: %.4f\n", r.Precio, r.Cantidad, r.Valor, r.TotalMonedas, r.Promedio, r.PrecioStopLoss)
+		if orderType == "Long" {
+			if r.Price > r.StopLossPrice {
+				filteredBuybacks = append(filteredBuybacks, r)
 			}
 		}
 	}
-	fmt.Println()
+	return filteredBuybacks
 }
 
-func poblarMargen(recompras []Recompra, apalancamiento int) {
-	for i := range recompras {
-		recompras[i].Margen = (recompras[i].Precio * recompras[i].Cantidad) / float64(apalancamiento)
+func setMargin(buybacks []Buyback, apalancamiento int) {
+	for i := range buybacks {
+		buybacks[i].Margin = (buybacks[i].Price * buybacks[i].CurrencyAmount) / float64(apalancamiento)
 	}
 
-	recompras[0].SumaMargen = recompras[0].Margen
+	buybacks[0].MarginSum = buybacks[0].Margin
 
-	for i := 1; i < len(recompras); i++ {
-		recompras[i].SumaMargen = recompras[i-1].SumaMargen + recompras[i].Margen
-	}
-}
-
-func obtenerPrecioFinaldeCompras(recompras []Recompra) {
-	recompras[0].Valor = recompras[0].Precio * recompras[0].Cantidad
-	recompras[0].TotalMonedas = recompras[0].Cantidad
-	for i := 1; i < len(recompras); i++ {
-		recompras[i].Valor = recompras[i].Precio * recompras[i].Cantidad
-		recompras[i].TotalMonedas = recompras[i].Cantidad + recompras[i-1].TotalMonedas
-	}
-
-	recompras[0].SumaValor = recompras[0].Valor
-	for i := 1; i < len(recompras); i++ {
-		recompras[i].SumaValor = recompras[i].Valor + recompras[i-1].SumaValor
-	}
-
-	recompras[0].Promedio = recompras[0].SumaValor / recompras[0].TotalMonedas
-
-	for i := 1; i < len(recompras); i++ {
-		recompras[i].Promedio = (recompras[i].Valor + recompras[i-1].SumaValor) / recompras[i].TotalMonedas
+	for i := 1; i < len(buybacks); i++ {
+		buybacks[i].MarginSum = buybacks[i-1].MarginSum + buybacks[i].Margin
 	}
 }
 
-func calcularPrecioStopLoss(o Order, recompras []Recompra) {
-	porcentajeLiquidacion := porcentajeLiquidacion(o.Leverage)
-	for i := range recompras {
-		posicion := (recompras[i].Promedio * recompras[i].TotalMonedas)
+func getBuybackFinalPrice(buybacks []Buyback) {
+	buybacks[0].Value = buybacks[0].Price * buybacks[0].CurrencyAmount
+	buybacks[0].TotalCurrency = buybacks[0].CurrencyAmount
+	for i := 1; i < len(buybacks); i++ {
+		buybacks[i].Value = buybacks[i].Price * buybacks[i].CurrencyAmount
+		buybacks[i].TotalCurrency = buybacks[i].CurrencyAmount + buybacks[i-1].TotalCurrency
+	}
 
-		if o.OrderType == "short" {
-			recompras[i].PrecioLiquidacion = recompras[i].Promedio * (1 + (float64(porcentajeLiquidacion) / 100))
-			recompras[i].PrecioStopLoss = (posicion + o.StopLoss) / recompras[i].TotalMonedas
+	buybacks[0].ValueSum = buybacks[0].Value
+	for i := 1; i < len(buybacks); i++ {
+		buybacks[i].ValueSum = buybacks[i].Value + buybacks[i-1].ValueSum
+	}
+
+	buybacks[0].Average = buybacks[0].ValueSum / buybacks[0].TotalCurrency
+
+	for i := 1; i < len(buybacks); i++ {
+		buybacks[i].Average = (buybacks[i].Value + buybacks[i-1].ValueSum) / buybacks[i].TotalCurrency
+	}
+}
+
+func calculateStopLossPrice(o Order, buybacks []Buyback) {
+	liquidationPercentage := setLiquidationPercentage(o.Leverage)
+	for i := range buybacks {
+		posicion := (buybacks[i].Average * buybacks[i].TotalCurrency)
+
+		if o.OrderType == "Short" {
+			buybacks[i].LiquidationPrice = buybacks[i].Average * (1 + (float64(liquidationPercentage) / 100))
+			buybacks[i].StopLossPrice = (posicion + o.StopLoss) / buybacks[i].TotalCurrency
 		}
 
-		if o.OrderType == "long" {
-			recompras[i].PrecioLiquidacion = (recompras[i].Promedio * ((float64(porcentajeLiquidacion) / 100) - 1)) * (-1)
-			recompras[i].PrecioStopLoss = (posicion - o.StopLoss) / recompras[i].TotalMonedas
+		if o.OrderType == "Long" {
+			buybacks[i].LiquidationPrice = (buybacks[i].Average * ((float64(liquidationPercentage) / 100) - 1)) * (-1)
+			buybacks[i].StopLossPrice = (posicion - o.StopLoss) / buybacks[i].TotalCurrency
 		}
 	}
 }
 
-func porcentajeLiquidacion(apalancamiento int) (porcentajeLiquidacion float64) {
-	switch apalancamiento {
+func setLiquidationPercentage(leverage int) (liquidationPercentage float64) {
+	switch leverage {
 	case 5:
-		porcentajeLiquidacion = 20
+		liquidationPercentage = 20
 	case 10:
-		porcentajeLiquidacion = 10
+		liquidationPercentage = 10
 	case 20:
-		porcentajeLiquidacion = 5
+		liquidationPercentage = 5
 	case 50:
-		porcentajeLiquidacion = 2
+		liquidationPercentage = 2
 	case 75:
-		porcentajeLiquidacion = 1.33
+		liquidationPercentage = 1.33
 	case 100:
-		porcentajeLiquidacion = 1
+		liquidationPercentage = 1
 	default:
-		fmt.Println("\nOpción inválida")
+		fmt.Println("\n Invalid option")
 	}
 
-	return porcentajeLiquidacion
+	return liquidationPercentage
 }

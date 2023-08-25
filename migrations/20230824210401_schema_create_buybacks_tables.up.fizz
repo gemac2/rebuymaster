@@ -1,0 +1,15 @@
+create_table("buybacks") {
+	t.Column("id", "uuid", {"primary": true})
+    t.Column("order_id", "uuid")
+    t.Column("price", "float", {})
+    t.Column("currency_amount", "float", {})
+    t.Column("margin", "float", {})
+    t.Column("margin_sum", "float", {})
+    t.Column("average", "float", {})
+    t.Column("stop_loss_price", "float", {})
+    t.Column("value", "float", {})
+    t.Column("total_currency", "float", {})
+    t.Column("liquidation_price", "float", {})
+    t.Column("value_sum", "float", {})
+	t.Timestamps()
+}
