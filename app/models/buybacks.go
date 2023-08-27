@@ -2,6 +2,7 @@ package models
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/gofrs/uuid"
@@ -151,4 +152,19 @@ func setLiquidationPercentage(leverage int) (liquidationPercentage float64) {
 	}
 
 	return liquidationPercentage
+}
+
+func SetPriceForExchanges(currencyName string, buybackPrice float64) string {
+	price := ""
+	switch currencyName {
+	case "BTCUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 1, 64)
+	case "ETHUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 2, 64)
+	case "LPTUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	default:
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	}
+	return price
 }

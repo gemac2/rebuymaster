@@ -12,12 +12,16 @@
                 
             </ul>
             <ul class="order-details-values list-unstyled px-5">
-                <li><%= order.OrderType %></li>
-                <li class="pt-2"><%= order.CurrencyName %></li>
-                <li class="pt-2"><%= order.OrderPrice %></li>
-                <li class="pt-2"><%= order.Leverage %>x</li>
-                <li class="pt-2"><%= order.IsBuybacksEnabled %></li>
-                <li class="pt-2"><%= order.BuybackPercentage %>%</li>
+                <%= if (order.OrderType == "Long") { %>
+                    <li class="badge long-badge bg-success first-li"><%= order.OrderType %></li>
+                <% } else { %>
+                    <li class="badge short-badge bg-danger first-li"><%= order.OrderType %></li>
+                <% } %>
+                <li class="pt-2 first-li"><%= order.CurrencyName %></li>
+                <li class="pt-2 first-li"><%= order.OrderPrice %></li>
+                <li class="pt-2 first-li"><%= order.Leverage %>x</li>
+                <li class="pt-2 first-li"><%= order.IsBuybacksEnabled %></li>
+                <li class="pt-2 first-li"><%= order.BuybackPercentage %>%</li>
             </ul>
         </div>
         <div class="lists d-flex w-50">

@@ -40,6 +40,48 @@ func GetBybitSymbol(currencyName string) bybit.SymbolV5 {
 		return bybit.SymbolV5ETHUSDT
 	case "XRPUSDT":
 		return bybit.SymbolV5XRPUSDT
+	case "ADAUSDT":
+		return bybit.SymbolV5ADAUSDT
+	case "LTCUSDT":
+		return bybit.SymbolV5LTCUSDT
+	case "BNBUSDT":
+		return bybit.SymbolV5BNBUSDT
+	case "SOLUSDT":
+		return bybit.SymbolV5SOLUSDT
+	case "SXPUSDT":
+		return bybit.SymbolV5SXPUSDT
+	case "SUIUSDT":
+		return bybit.SymbolV5SUIUSDT
+	case "BLZUSDT":
+		return bybit.SymbolV5BLZUSDT
+	case "LPTUSDT":
+		return bybit.SymbolV5LPTUSDT
+	case "1000PEPEUSDT":
+		return bybit.SymbolV51000PEPEUSDT
+	case "MATICUSDT":
+		return bybit.SymbolV5MATICUSDT
+	case "TOMOUSDT":
+		return bybit.SymbolV5TOMOUSDT
+	case "LINAUSDT":
+		return bybit.SymbolV5LINAUSDT
+	case "RUNEUSDT":
+		return bybit.SymbolV5RUNEUSDT
+	case "OPUSDT":
+		return bybit.SymbolV5OPUSDT
+	case "DOGEUSDT":
+		return bybit.SymbolV5DOGEUSDT
+	case "UNFIUSDT":
+		return bybit.SymbolV5UNFIUSDT
+	case "APEUSDT":
+		return bybit.SymbolV5APEUSDT
+	case "GALAUSDT":
+		return bybit.SymbolV5GALAUSDT
+	case "APTUSDT":
+		return bybit.SymbolV5APTUSDT
+	case "LINKUSDT":
+		return bybit.SymbolV5LINKUSDT
+	case "XLMUSDT":
+		return bybit.SymbolV5XLMUSDT
 	}
 	return ""
 }
@@ -61,6 +103,17 @@ func GetBinanceSide(orderType string) futures.SideType {
 		return futures.SideTypeBuy
 	case "Short":
 		return futures.SideTypeSell
+	default:
+		return futures.SideTypeBuy
+	}
+}
+
+func GetBinanceStopLossSide(orderType string) futures.SideType {
+	switch orderType {
+	case "Long":
+		return futures.SideTypeSell
+	case "Short":
+		return futures.SideTypeBuy
 	default:
 		return futures.SideTypeBuy
 	}

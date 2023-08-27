@@ -77,35 +77,41 @@
                 <label for="" class="text-white">Other Info</label>
                 <div class="d-flex w-75 justify-content-between">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" name="IsBuybacksEnabled" id="flexSwitchCheckDefault" <%= if (order.IsBuybacksEnabled) { %>checked<% } %>>
+                        <input type="hidden" value="<%=if(order.IsBuybacksEnabled){%>true<%}else{%>false<%}%>" name="IsBuybacksEnabled" />
+                        <input class="form-check-input custom-control-input" type="checkbox" id="flexSwitchCheckDefault" <%= if (order.IsBuybacksEnabled) { %>checked<% } %>>
                         <label class="form-check-label text-white" for="flexSwitchCheckDefault">Buybacks Enabled</label>
                     </div>
-                    <div class="form-check form-switch ml-2">
-                        <input class="form-check-input" type="checkbox" name="IsOrderPosition" id="CheckOrderPosition" <%= if (order.IsOrderPosition) { %>checked<% } %>>
+                    <div class="form-check position-check ml-2">
+                        <input type="hidden" value="<%=if(order.IsOrderPosition){%>true<%}else{%>false<%}%>" name="IsOrderPosition" />
+                        <input class="form-check-input custom-control-input" type="checkbox" id="CheckOrderPosition" <%= if (order.IsOrderPosition) { %>checked<% } %>>
                         <label class="form-check-label text-white" for="CheckOrderPosition">
                             Order Is Position
                         </label>
                     </div>
-                    <div class="form-check form-switch ml-2">
-                        <input class="form-check-input" type="checkbox" name="TakeProfitAchieved" id="CheckTakeProfit" <%= if (order.TakeProfitAchieved) { %>checked<% } %>>
+                    <div class="form-check tp-check ml-2">
+                        <input type="hidden" value="<%=if(order.TakeProfitAchieved){%>true<%}else{%>false<%}%>" name="TakeProfitAchieved" />
+                        <input class="form-check-input custom-control-input" type="checkbox" id="CheckTakeProfit" <%= if (order.TakeProfitAchieved) { %>checked<% } %>>
                         <label class="form-check-label text-white" for="CheckTakeProfit">
                             Take Profit Achieved
                         </label>
                     </div>
-                    <div class="form-check form-switch ml-2">
-                        <input class="form-check-input" type="checkbox" name="StopLossTaken" id="CheckSl" <%= if (order.StopLossTaken) { %>checked<% } %>>
+                    <div class="form-check sl-check ml-2">
+                        <input type="hidden" value="<%=if(order.StopLossTaken){%>true<%}else{%>false<%}%>" name="StopLossTaken" />
+                        <input class="form-check-input custom-control-input" type="checkbox" id="CheckSl" <%= if (order.StopLossTaken) { %>checked<% } %>>
                         <label class="form-check-label text-white" for="CheckSl">
                             Stop Loss Taken
                         </label>
                     </div>
-                    <div class="form-check form-switch ml-2">
-                        <input class="form-check-input" type="checkbox" name="TradeWon" id="CheckTradeWon" <%= if (order.TradeWon) { %>checked<% } %>>
+                    <div class="form-check tw-check ml-2">
+                        <input type="hidden" value="<%=if(order.TradeWon){%>true<%}else{%>false<%}%>" name="TradeWon" />
+                        <input class="form-check-input custom-control-input" type="checkbox" id="CheckTradeWon" <%= if (order.TradeWon) { %>checked<% } %>>
                         <label class="form-check-label text-white" for="CheckTradeWon">
                             Win Trade
                         </label>
                     </div>
-                    <div class="form-check form-switch ml-2">
-                        <input class="form-check-input" type="checkbox" name="TradeLoss" id="CheckTradeLoss" <%= if (order.TradeLoss) { %>checked<% } %>>
+                    <div class="form-check tl-check ml-2">
+                        <input type="hidden" value="<%=if(order.TradeLoss){%>true<%}else{%>false<%}%>" name="TradeLoss" />
+                        <input class="form-check-input custom-control-input" type="checkbox" id="CheckTradeLoss" <%= if (order.TradeLoss) { %>checked<% } %>>
                         <label class="form-check-label text-white" for="CheckTradeLoss">
                             Loss Trade
                         </label>

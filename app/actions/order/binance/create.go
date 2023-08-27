@@ -26,7 +26,7 @@ func SetOrder(c buffalo.Context) error {
 	binanceSide := models.GetBinanceSide(order.OrderType)
 
 	quantity := strconv.FormatFloat(order.CurrencyQuantity, 'f', -1, 64)
-	price := strconv.FormatFloat(order.OrderPrice, 'f', -1, 64)
+	price := models.SetPriceForExchanges(order.CurrencyName, order.OrderPrice)
 
 	err := godotenv.Load()
 	if err != nil {
@@ -56,10 +56,11 @@ func SetOrder(c buffalo.Context) error {
 
 	if !order.IsBuybacksEnabled {
 		slPrice := order.SetStopLossPrice()
-		strSLPrice := strconv.FormatFloat(slPrice, 'f', -1, 64)
+		strSLPrice := models.SetPriceForExchanges(order.CurrencyName, slPrice)
+		binanceSLSide := models.GetBinanceStopLossSide(order.OrderType)
 		stopOrder := client.NewCreateOrderService().
 			Symbol(order.CurrencyName).
-			Side(futures.SideTypeSell).
+			Side(binanceSLSide).
 			Type(futures.OrderTypeStopMarket).
 			Quantity(quantity).
 			StopPrice(strSLPrice)

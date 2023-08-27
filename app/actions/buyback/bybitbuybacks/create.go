@@ -43,7 +43,7 @@ func CreateBuybacks(c buffalo.Context) error {
 		client := bybit.NewClient().WithAuth(apiKey, secretKey)
 
 		quantity := strconv.FormatFloat(fBuyback.CurrencyAmount, 'f', -1, 64)
-		price := strconv.FormatFloat(fBuyback.Price, 'f', 4, 64)
+		price := models.SetPriceForExchanges(order.CurrencyName, fBuyback.Price)
 
 		bybitSymbol := models.GetBybitSymbol(order.CurrencyName)
 		bybitSide := models.GetBybitSide(order.OrderType)
@@ -58,7 +58,7 @@ func CreateBuybacks(c buffalo.Context) error {
 		}
 
 		if i == 0 {
-			slPrice := strconv.FormatFloat(filterBuybacks[len(filterBuybacks)-1].StopLossPrice, 'f', 4, 64)
+			slPrice := models.SetPriceForExchanges(order.CurrencyName, filterBuybacks[len(filterBuybacks)-1].StopLossPrice)
 			strTP := strconv.FormatFloat(order.TakeProfit, 'f', -1, 64)
 			orderParams.StopLoss = &slPrice
 			orderParams.TakeProfit = &strTP

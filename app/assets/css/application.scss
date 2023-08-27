@@ -20,8 +20,49 @@
     margin-left: ($spacer * .5) !important;
 }
 
-h1 a{
-    color: #ffe69c;
+h1 {
+    a, i{
+        color: #ffe69c;
+    }
+    
 }
 
 .h-40px{height: 40px;}
+
+.card{
+    
+    h5{
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-dark-color);
+    }
+    .order-items{
+        .order-details-labels{
+            font-size: 18px;
+            color: #B3B5BA;
+            li{
+                padding: 4px 0px;
+            }
+        }
+        .order-details-values{
+            font-size: 18px;
+            color: #3A3F45;
+            li{
+                padding: 4px 0px;
+            }
+            .first-li {
+                padding: 6px 0px;
+            }
+        }
+    }
+}
+
+.long-badge, .short-badge{
+    height: 25px;
+    border-radius: 14px;
+    width: 100px;
+}
+
+.breadcrumb-item::before {
+    color: #B3B5BA !important;
+}

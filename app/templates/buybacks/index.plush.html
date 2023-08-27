@@ -24,6 +24,13 @@
     </div>
 <% } %>
 
+<%= partial("/partials/breadcrumb.plush.html",{
+    homePath: orderDetailsPath({order_id: order.ID}),
+    session: "Buybacks",
+    sessionPath: 	buybackOrderID09aZPath({order_id: order.ID}),
+    currentPage: "List",
+}) %>
+
 <%= if (len(buybacks) == 0) { %>
     <!-- html here -->
 <% } else { %>

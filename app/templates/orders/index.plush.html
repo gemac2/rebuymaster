@@ -6,6 +6,13 @@
     </div>
 <% } %>
 
+<%= partial("/partials/breadcrumb.plush.html",{
+    homePath: "#",
+    session: "Orders",
+    sessionPath: 	ordersPath(),
+    currentPage: "List",
+}) %>
+
 <%= if (len(orders) == 0) { %>
     <%= partial("/partials/empty.plush.html",{
         boldText: "There are not orders yet.",

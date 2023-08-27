@@ -43,12 +43,7 @@ func CreateBuybacks(c buffalo.Context) error {
 	for _, fBuyback := range filterBuybacks {
 		binanceSide := models.GetBinanceSide(order.OrderType)
 		quantity := strconv.FormatFloat(fBuyback.CurrencyAmount, 'f', -1, 64)
-		price := ""
-		if order.CurrencyName == "BTCUSDT" {
-			price = strconv.FormatFloat(fBuyback.Price, 'f', 1, 64)
-		} else {
-			price = strconv.FormatFloat(fBuyback.Price, 'f', 4, 64)
-		}
+		price := models.SetPriceForExchanges(order.CurrencyName, fBuyback.Price)
 
 		binanceOrder := client.NewCreateOrderService().
 			Symbol(order.CurrencyName).
@@ -67,11 +62,12 @@ func CreateBuybacks(c buffalo.Context) error {
 		log.Printf("Futures Order ID: %d\n", resp.OrderID)
 	}
 
-	slPrice := strconv.FormatFloat(filterBuybacks[len(filterBuybacks)-1].StopLossPrice, 'f', 1, 64)
+	binanceSLSide := models.GetBinanceStopLossSide(order.OrderType)
+	slPrice := models.SetPriceForExchanges(order.CurrencyName, filterBuybacks[len(filterBuybacks)-1].StopLossPrice)
 	quantity := strconv.FormatFloat(filterBuybacks[len(filterBuybacks)-1].CurrencyAmount, 'f', -1, 64)
 	stopOrder := client.NewCreateOrderService().
 		Symbol(order.CurrencyName).
-		Side(futures.SideTypeSell).
+		Side(binanceSLSide).
 		Type(futures.OrderTypeStopMarket).
 		Quantity(quantity).
 		StopPrice(slPrice)
