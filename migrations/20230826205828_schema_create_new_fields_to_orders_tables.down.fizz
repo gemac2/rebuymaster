@@ -1,0 +1,7 @@
+drop_column("orders", "is_buybacks_enabled")
+drop_column("orders", "is_order_position")
+drop_column("orders", "stop_loss_taken")
+drop_column("orders", "take_profit_achieved")
+drop_column("orders", "trade_won")
+drop_column("orders", "trade_loss")
+drop_column("orders", "take_profit")

@@ -2,17 +2,33 @@
 <%= contentFor("body-class") { %>details<% }  %>
 <%= contentFor("action-buttons") {%>
     <div class="d-flex">
-        <%= if (len(buybacks) == 0) { %>
-            <button class="btn btn-secondary mr-2 d-flex align-items-center justify-content-between"
-                hx-post="/buybacks/<%= order.ID %>/create"
-                hx-trigger="click"
-                hx-swap="none"
-                hx-target="#resultado">
-                Create Buybacks
-            </button>
-        <% } else { %>
-            <a class="btn btn-secondary mr-2 d-flex align-items-center justify-content-between" href="/buybacks/<%= order.ID %>"><span class="ml-2">View Buybacks</span></a>
+        <%= if (order.IsBuybacksEnabled) { %>
+            <%= if (len(buybacks) == 0) { %>
+                <button class="btn btn-secondary mr-2 d-flex align-items-center justify-content-between"
+                    hx-post="/buybacks/<%= order.ID %>/create"
+                    hx-trigger="click"
+                    hx-swap="none"
+                    hx-target="#resultado">
+                    Create Buybacks
+                </button>
+            <% } else { %>
+                <a class="btn btn-secondary mr-2 d-flex align-items-center justify-content-between" href="/buybacks/<%= order.ID %>"><span class="ml-2">View Buybacks</span></a>
+            <% } %>
         <% } %>
+        <button class="btn btn-primary ml-2 d-flex align-items-center justify-content-between"
+            hx-post="/orders/<%= order.ID %>/set-order"
+            hx-trigger="click"
+            hx-swap="none"
+            hx-target="#resultado">
+            Create Bybit Order
+        </button>
+        <button class="btn btn-success ml-2 d-flex align-items-center justify-content-between"
+            hx-post="/orders/<%= order.ID %>/create-order"
+            hx-trigger="click"
+            hx-swap="none"
+            hx-target="#resultado">
+            Create Binance Order
+        </button>
     </div>
 <% } %>
 

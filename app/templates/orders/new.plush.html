@@ -1,3 +1,11 @@
+<%= contentFor("title") { %> Orders <% } %>
+<%= contentFor("body-class") { %>new<% }  %>
+<%= contentFor("action-buttons") {%>
+    <div class="d-flex">
+        <button type="submit" form="OrderForm" class="btn btn-secondary">Create Order</button>
+    </div>
+<% } %>
+
 <div class="">
     <%= form_for(order, {action: "/orders/create", id: "OrderForm", method: "POST"}) { %>
         <%= partial("orders/form.plush.html") %>

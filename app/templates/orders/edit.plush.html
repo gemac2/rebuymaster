@@ -1,0 +1,15 @@
+<%= contentFor("title") { %> Orders <% } %>
+<%= contentFor("body-class") { %>edit<% }  %>
+<%= contentFor("action-buttons") {%>
+    <div class="d-flex">
+        <button type="submit" form="UpdateOrderForm" class="btn btn-secondary">Update Order</button>
+    </div>
+<% } %>
+
+<div class="">
+    <%= form_for(order, {action: orderUpdatePath({order_id: order.ID}), id: "UpdateOrderForm", method: "PUT"}) { %>
+        <%= partial("orders/form.plush.html",{
+            isEditForm: true,
+        }) %>
+    <% } %>
+</div>

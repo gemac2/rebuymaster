@@ -1,0 +1,7 @@
+add_column("orders", "is_buybacks_enabled", "bool", {"default": false})
+add_column("orders", "is_order_position", "bool", {"default": false})
+add_column("orders", "stop_loss_taken", "bool", {"default": false})
+add_column("orders", "take_profit_achieved", "bool", {"default": false})
+add_column("orders", "trade_won", "bool", {"default": false})
+add_column("orders", "trade_loss", "bool", {"default": false})
+add_column("orders", "take_profit", "float", {"default": 0.0})

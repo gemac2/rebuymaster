@@ -1,5 +1,28 @@
-<%= contentFor("title") { %> Buybackss <% } %>
+<%= contentFor("title") { %> Buybacks <% } %>
 <%= contentFor("body-class") { %>list<% }  %>
+<%= contentFor("action-buttons") {%>
+    <div class="d-flex">
+        <button class="btn btn-primary ml-2 d-flex align-items-center justify-content-between"
+            hx-post="/buybacks/<%= order.ID %>/bybit/create"
+            hx-trigger="click"
+            hx-swap="none"
+            hx-target="#Buybacks">
+            Create Bybit Buybacks
+        </button>
+        <button class="btn btn-success ml-2 d-flex align-items-center justify-content-between"
+            hx-post="/buybacks/<%= order.ID %>/binance/create"
+            hx-trigger="click"
+            hx-swap="none"
+            hx-target="#Buybacks">
+            Create Binance Buybacks
+        </button>
+        <button class="btn btn-danger ml-2 d-flex align-items-center justify-content-between"
+            hx-delete="/buybacks/<%= order.ID %>/delete"
+            hx-confirm="Are you sure you want to remove these buybacks?">
+            Delete Buybacks
+        </button>
+    </div>
+<% } %>
 
 <%= if (len(buybacks) == 0) { %>
     <!-- html here -->
@@ -20,9 +43,9 @@
                 <%= for (i, buyback) in buybacks { %>
                     <tr>
                         <th scope="row"><%= i + 1 %></th>
-                        <td><%= buyback.Price %></td>
-                        <td><%= buyback.CurrencyAmount %></td>
-                        <td class="float-number"><%= buyback.Value %></td>
+                        <td class="float-number"><%= buyback.Price %></td>
+                        <td class="float-number"><%= buyback.CurrencyAmount %></td>
+                        <td>$<span class="float-number"><%= buyback.Value %></span></td>
                         <td class="float-number"><%= buyback.StopLossPrice %></td>
                         <td class="float-number"><%= buyback.Average %></td>
                     </tr>

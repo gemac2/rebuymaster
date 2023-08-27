@@ -7,28 +7,35 @@
                 <li class="pt-2">Contract Name</li>
                 <li class="pt-2">Order Price</li>
                 <li class="pt-2">Leverage</li>
+                <li class="pt-2">Buybacks Enabled</li>
+                <li class="pt-2">Buyback Percentage</li>
+                
             </ul>
             <ul class="order-details-values list-unstyled px-5">
                 <li><%= order.OrderType %></li>
-                <li class="pt-2"><%= order.CurrencyName %>USDT</li>
+                <li class="pt-2"><%= order.CurrencyName %></li>
                 <li class="pt-2"><%= order.OrderPrice %></li>
                 <li class="pt-2"><%= order.Leverage %>x</li>
+                <li class="pt-2"><%= order.IsBuybacksEnabled %></li>
+                <li class="pt-2"><%= order.BuybackPercentage %>%</li>
             </ul>
         </div>
         <div class="lists d-flex w-50">
             <ul class="order-details-labels list-unstyled label-text-color w-35">
                 <li>Currency Percentage</li>
-                <li class="pt-2">Buyback Percentage</li>
                 <li class="pt-2">Currency Quantity</li>
                 <li class="pt-2">Stop Loss</li>
-                <li class="pt-2">Date Created</li>
+                <li class="pt-2">Take Profit</li>
+                <li class="pt-2">Order Created</li>
+                <li class="pt-2">Order Updated</li>
             </ul>
             <ul class="order-details-values list-unstyled px-4">
-                <li><%= order.CurrencyPercentage %></li>
-                <li class="pt-2"><%= order.BuybackPercentage %></li>
+                <li><%= order.CurrencyPercentage %>%</li>
                 <li class="pt-2"><%= order.CurrencyQuantity %></li>
                 <li class="pt-2"><%= order.StopLoss %> USDT</li>
+                <li class="pt-2"><%= order.TakeProfit %></li>
                 <li class="pt-2"><%= order.CreatedAt.Format("01/02/2006") %></li>
+                <li class="pt-2"><%= order.UpdatedAt.Format("01/02/2006") %></li>
             </ul>
         </div>
     </div>

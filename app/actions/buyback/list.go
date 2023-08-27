@@ -26,5 +26,6 @@ func List(c buffalo.Context) error {
 	filterBuybacks := models.FilterBuybacksByStopLoss(buybacks, order.OrderType)
 
 	c.Set("buybacks", filterBuybacks)
+	c.Set("order", order)
 	return c.Render(http.StatusOK, r.HTML("buybacks/index.plush.html"))
 }
