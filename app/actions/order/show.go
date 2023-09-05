@@ -23,8 +23,10 @@ func Show(c buffalo.Context) error {
 		return errors.WithStack(errors.Wrap(err, "Show - error getting all buybacks"))
 	}
 
+	filterBuybacks := models.FilterBuybacksByStopLoss(buybacks, order.OrderType)
+
 	c.Set("order", order)
-	c.Set("buybacks", buybacks)
+	c.Set("buybacks", filterBuybacks)
 
 	return c.Render(http.StatusOK, r.HTML("/orders/show.plush.html"))
 }

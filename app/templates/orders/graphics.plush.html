@@ -1,0 +1,20 @@
+<%= contentFor("title") { %> Orders <% } %>
+<%= contentFor("body-class") { %>graphics<% }  %>
+
+<%= partial("/partials/breadcrumb.plush.html",{
+    homePath: 	ordersPath(),
+    session: "Orders",
+    sessionPath: 	ordersPath(),
+    currentPage: "Graphics",
+}) %>
+
+<div class="order-graphics m-0 p-0 mb-5">
+    <div class="card border-0 shadow-none px-4 pt-2" id="resultado">
+        <div id="chart" class="w-100">
+            <%= chartRateContent %>
+            <%= chartStrategyContent %>
+        </div>
+    </div>
+</div>
+
+

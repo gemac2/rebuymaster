@@ -27,6 +27,7 @@ type Order struct {
 	TradeWon           bool      `db:"trade_won" json:"trade_won"`
 	TradeLoss          bool      `db:"trade_loss" json:"trade_loss"`
 	TakeProfit         float64   `db:"take_profit" json:"take_profit"`
+	Profit             float64   `db:"profit" json:"profit"`
 }
 
 // Orders struct
@@ -82,6 +83,10 @@ func GetBybitSymbol(currencyName string) bybit.SymbolV5 {
 		return bybit.SymbolV5LINKUSDT
 	case "XLMUSDT":
 		return bybit.SymbolV5XLMUSDT
+	case "CYBERUSDT":
+		return bybit.SymbolV5CYBERUSDT
+	case "STMXUSDT":
+		return bybit.SymbolV5STMXUSDT
 	}
 	return ""
 }

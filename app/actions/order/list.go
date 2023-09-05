@@ -13,7 +13,7 @@ func List(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 
 	orders := []models.Order{}
-	if err := tx.All(&orders); err != nil {
+	if err := tx.Order("created_at ASC").All(&orders); err != nil {
 		return errors.WithStack(errors.Wrap(err, "List - error getting all orders"))
 	}
 

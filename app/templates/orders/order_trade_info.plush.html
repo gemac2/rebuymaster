@@ -1,0 +1,69 @@
+<div class="code-information pt-4">
+    <h2 class="line-after label mb-3 d-block font-weight-bold">Trade Details</h2>
+    <div class="order-items d-flex pt-2">
+        <div class="lists d-flex">
+            <ul class="order-details-labels width-labels list-unstyled label-text-color">
+                <%= if (order.IsOrderPosition) { %>
+                    <li>Order Is Position</li>
+                <% } %>
+                <%= if (order.StopLossTaken) { %>
+                    <li>Stop Loss Achieved </li>
+                <% } %>
+                <%= if (order.TakeProfitAchieved) { %>
+                    <li>Take Profit Achieved </li>
+                <% } %>
+                <%= if (order.TradeWon) { %>
+                    <li>Trade Win </li>
+                <% } %>
+                <%= if (order.TradeLoss) { %>
+                    <li>Trade Loss </li>
+                <% } %>
+                <li>Trade Strategy</li>
+                <%= if (order.TradeWon) { %>
+                    <li>Profit</li>
+                <% } %>
+
+                <%= if (order.TradeLoss) { %>
+                    <li>Loss</li>
+                <% } %>
+                
+            </ul>
+            <ul class="order-details-values list-unstyled px-5">
+                <%= if (order.IsOrderPosition) { %>
+                    <li class="text-capitalize"><%= order.IsOrderPosition %></li>
+                <% } %>
+                <%= if (order.StopLossTaken) { %>
+                    <li class="text-capitalize"><%= order.StopLossTaken %></li>
+                <% } %>
+                <%= if (order.TakeProfitAchieved) { %>
+                    <li class="text-capitalize"><%= order.TakeProfitAchieved %></li>
+                <% } %>
+                <%= if (order.TradeWon) { %>
+                    <li class="text-capitalize"><%= order.TradeWon %></li>
+                <% } %>
+                <%= if (order.TradeLoss) { %>
+                    <li class="text-capitalize"><%= order.TradeLoss %></li>
+                <% } %>
+                <%= if (order.IsBuybacksEnabled) { %>
+                    <%= if (len(buybacks) != 0) { %>
+                        <%= if (len(buybacks) == 1) { %>
+                            <li>Two and One With buyback</li>
+                        <% } else { %>
+                            <li>Calculator</li>
+                        <% } %>
+                    <% } else { %>
+                        <li>Undefined</li>
+                    <% } %>
+                <% } else { %>
+                    <li>Two and One</li>
+                <% } %>
+                <%= if (order.TradeWon) { %>
+                    <li><%= order.Profit %> USDT</li>
+                <% } %>
+                <%= if (order.TradeLoss) { %>
+                    <li><%= order.StopLoss %> USDT</li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>

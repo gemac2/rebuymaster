@@ -2,20 +2,23 @@
 <%= contentFor("body-class") { %>list<% }  %>
 <%= contentFor("action-buttons") {%>
     <div class="d-flex">
-        <button class="btn btn-primary ml-2 d-flex align-items-center justify-content-between"
-            hx-post="/buybacks/<%= order.ID %>/bybit/create"
-            hx-trigger="click"
-            hx-swap="none"
-            hx-target="#Buybacks">
-            Create Bybit Buybacks
-        </button>
-        <button class="btn btn-success ml-2 d-flex align-items-center justify-content-between"
-            hx-post="/buybacks/<%= order.ID %>/binance/create"
-            hx-trigger="click"
-            hx-swap="none"
-            hx-target="#Buybacks">
-            Create Binance Buybacks
-        </button>
+        <%= if (!order.IsOrderPosition) { %>
+            <button class="btn btn-primary ml-2 d-flex align-items-center justify-content-between"
+                hx-post="/buybacks/<%= order.ID %>/bybit/create"
+                hx-trigger="click"
+                hx-swap="none"
+                hx-target="#Buybacks">
+                Create Bybit Buybacks
+            </button>
+            <button class="btn btn-success ml-2 d-flex align-items-center justify-content-between"
+                hx-post="/buybacks/<%= order.ID %>/binance/create"
+                hx-trigger="click"
+                hx-swap="none"
+                hx-target="#Buybacks">
+                Create Binance Buybacks
+            </button>
+        <% } %>
+        
         <button class="btn btn-danger ml-2 d-flex align-items-center justify-content-between"
             hx-delete="/buybacks/<%= order.ID %>/delete"
             hx-confirm="Are you sure you want to remove these buybacks?">
@@ -25,7 +28,10 @@
 <% } %>
 
 <%= partial("/partials/breadcrumb.plush.html",{
-    homePath: orderDetailsPath({order_id: order.ID}),
+    homePath: ordersPath(),
+    isBuybackPage: true,
+    beforeSession: "Order",
+    beforeSessionPath: orderDetailsPath({order_id: order.ID}),
     session: "Buybacks",
     sessionPath: 	buybackOrderID09aZPath({order_id: order.ID}),
     currentPage: "List",

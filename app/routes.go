@@ -9,6 +9,7 @@ import (
 	"rebuymaster/app/actions/order"
 	"rebuymaster/app/actions/order/binance"
 	"rebuymaster/app/actions/order/bybit"
+	"rebuymaster/app/actions/order/graphics"
 	"rebuymaster/app/middleware"
 	"rebuymaster/public"
 
@@ -32,6 +33,7 @@ func setRoutes(app *buffalo.App) {
 	orders.PUT("/{order_id:[-0-9a-z]+}/update", order.Update)
 	orders.POST("/create", order.Create)
 	orders.DELETE("/{order_id:[-0-9a-z]+}/delete", order.DeleteOrder)
+	orders.GET("/graphics", graphics.GenerateGraphics)
 	// route to create order in bybit
 	orders.POST("/{order_id:[-0-9a-z]+}/set-order", bybit.Create)
 

@@ -64,7 +64,7 @@ func CreateBuybacks(c buffalo.Context) error {
 
 	binanceSLSide := models.GetBinanceStopLossSide(order.OrderType)
 	slPrice := models.SetPriceForExchanges(order.CurrencyName, filterBuybacks[len(filterBuybacks)-1].StopLossPrice)
-	quantity := strconv.FormatFloat(filterBuybacks[len(filterBuybacks)-1].CurrencyAmount, 'f', -1, 64)
+	quantity := strconv.FormatFloat((filterBuybacks[len(filterBuybacks)-1].CurrencyAmount * 2), 'f', -1, 64)
 	stopOrder := client.NewCreateOrderService().
 		Symbol(order.CurrencyName).
 		Side(binanceSLSide).

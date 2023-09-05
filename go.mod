@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/adshao/go-binance/v2 v2.4.5
+	github.com/go-echarts/go-echarts/v2 v2.2.7
 	github.com/gobuffalo/buffalo v1.1.0
 	github.com/gobuffalo/envy v1.10.2
 	github.com/gobuffalo/mw-csrf v1.0.2
@@ -63,6 +64,7 @@ require (
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/kr/pretty v0.3.0 // indirect
+	github.com/lib/pq v1.10.9 // indirect
 	github.com/luna-duclos/instrumentedsql v1.1.3 // indirect
 	github.com/markbates/oncer v1.0.0 // indirect
 	github.com/mattn/go-colorable v0.1.9 // indirect

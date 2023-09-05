@@ -21,7 +21,7 @@
                 <label for="" class="text-white">Buyback Percentage</label>
                 <div class="input-group w-75 mb-3 h-40px">
                     <span class="input-group-text" id="basic-addon1">%</span>
-                    <input type="text" name="BuybackPercentage" <%= if (isEditForm) { %>value="<%= order.BuybackPercentage %>"<% } %> class="form-control only-numbers" data-decimals="1" data-padzeros="true" placeholder="Buyback" aria-label="Order" aria-describedby="basic-addon1">
+                    <input type="text" name="BuybackPercentage" <%= if (isEditForm) { %>value="<%= order.BuybackPercentage %>"<% } %> class="form-control only-numbers" data-decimals="2" data-padzeros="true" placeholder="Buyback" aria-label="Order" aria-describedby="basic-addon1">
                 </div> 
             </div>
 
@@ -69,7 +69,15 @@
                 <label for="" class="text-white">Take Profit</label>
                 <div class="input-group w-75 mb-3 h-40px">
                     <span class="input-group-text" id="basic-addon1">$</span>
-                    <input type="text" name="TakeProfit" <%= if (isEditForm) { %>value="<%= order.TakeProfit %>"<% } %> class="form-control only-numbers" data-decimals="2" data-padzeros="true" placeholder="TP Price" aria-label="Order" aria-describedby="basic-addon1">
+                    <input type="text" name="TakeProfit" <%= if (isEditForm) { %>value="<%= order.TakeProfit %>"<% } %> class="form-control only-numbers" data-decimals="4" data-padzeros="true" placeholder="TP Price" aria-label="Order" aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <label for="" class="text-white">Profit</label>
+                <div class="input-group w-75 mb-3 h-40px">
+                    <span class="input-group-text" id="basic-addon1">$</span>
+                    <input type="text" name="Profit" <%= if (isEditForm) { %>value="<%= order.Profit %>"<% } %> class="form-control only-numbers" data-decimals="4" data-padzeros="true" placeholder="Profit" aria-label="Order" aria-describedby="basic-addon1">
                 </div>
             </div>
 

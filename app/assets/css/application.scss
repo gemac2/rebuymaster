@@ -66,3 +66,12 @@ h1 {
 .breadcrumb-item::before {
     color: #B3B5BA !important;
 }
+
+.container {
+    flex-direction: column !important;
+    align-items: inherit !important;
+
+    .item {
+        margin: 0 !important;
+    }
+}

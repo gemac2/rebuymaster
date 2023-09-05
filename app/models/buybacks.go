@@ -163,6 +163,12 @@ func SetPriceForExchanges(currencyName string, buybackPrice float64) string {
 		price = strconv.FormatFloat(buybackPrice, 'f', 2, 64)
 	case "LPTUSDT":
 		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "NMRUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 1, 64)
+	case "UNFIUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "BLZUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
 	default:
 		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
 	}

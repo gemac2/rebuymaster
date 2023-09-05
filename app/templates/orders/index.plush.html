@@ -29,12 +29,10 @@
                     <th scope="col">#</th>
                     <th scope="col">Order Type</th>
                     <th scope="col">Currency Name</th>
-                    <th scope="col">Buyback Percentage</th>
-                    <th scope="col">Currency Percentage</th>
-                    <th scope="col">Stop Loss</th>
                     <th scope="col">Order Price</th>
                     <th scope="col">Currency Quantity</th>
-                    <th scope="col">Leverage</th>
+                    <th scope="col">Stop Loss</th>
+                    <th scope="col">Create Date</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -44,12 +42,10 @@
                         <th scope="row"><%= i + 1 %></th>
                         <td><%= order.OrderType %></td>
                         <td><%= order.CurrencyName %></td>
-                        <td><%= order.BuybackPercentage %></td>
-                        <td><%= order.CurrencyPercentage %></td>
-                        <td><%= order.StopLoss %></td>
                         <td><%= order.OrderPrice %></td>
                         <td><%= order.CurrencyQuantity %></td>
-                        <td><%= order.Leverage %></td>
+                        <td><%= order.StopLoss %> USDT</td>
+                        <td><%= order.CreatedAt.Format("02-01-2006") %></td>
                         <td>
                             <div class="d-flex align-self-center justify-content-center dropdown">
                                 <button class="btn btn-outline border-0 text-white" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
