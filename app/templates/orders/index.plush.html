@@ -52,8 +52,8 @@
                                     <i class="fa fa-ellipsis-h font-23" aria-hidden="true"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right py-1 w-195px py-2 font-14 box-shadow box-radius-lg mt-n2" aria-labelledby="dropdownMenuButton">
-                                    <a href="/orders/<%= order.ID %>/details" class="dropdown-item text-primary-color pt-2">View</a>
-                                    <a href="<%= editOrderPath({order_id: order.ID}) %>" class="dropdown-item text-primary-color pt-2">Edit</a>
+                                    <a href="/orders/<%= order.ID %>/details" class="dropdown-item pt-2">View</a>
+                                    <a href="<%= editOrderPath({order_id: order.ID}) %>" class="dropdown-item pt-2">Edit</a>
                                     <a href="/orders/<%= order.ID %>/delete"
                                         hx-delete="/orders/<%= order.ID %>/delete"
                                         hx-confirm="Are you sure you want to remove this order?"
@@ -67,5 +67,6 @@
                 <% } %>
             </tbody>
         </table>
+        <%= partial("/partials/pagination.plush.html") %>
     </div>
 <% } %>

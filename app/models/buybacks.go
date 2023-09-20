@@ -141,6 +141,8 @@ func setLiquidationPercentage(leverage int) (liquidationPercentage float64) {
 		liquidationPercentage = 10
 	case 20:
 		liquidationPercentage = 5
+	case 25:
+		liquidationPercentage = 4
 	case 50:
 		liquidationPercentage = 2
 	case 75:
@@ -168,6 +170,12 @@ func SetPriceForExchanges(currencyName string, buybackPrice float64) string {
 	case "UNFIUSDT":
 		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
 	case "BLZUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
+	case "PERPUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
+	case "TRBUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "HIFIUSDT":
 		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
 	default:
 		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)

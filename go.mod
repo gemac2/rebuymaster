@@ -11,6 +11,7 @@ require (
 	github.com/gobuffalo/mw-paramlogger v1.0.2
 	github.com/gobuffalo/pop/v6 v6.1.1
 	github.com/gobuffalo/suite/v4 v4.0.4
+	github.com/gobuffalo/x v0.1.0
 	github.com/gofrs/uuid v4.3.1+incompatible
 	github.com/hirokisan/bybit/v2 v2.22.0
 	github.com/joho/godotenv v1.5.1

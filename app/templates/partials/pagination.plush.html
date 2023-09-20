@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-between pagination-container align-items-center mb-5 p-15">
+  <div class="page-status secondary-dark-color mr-auto">
+    <span class="pr-3 label-text-color">Displaying <%= pagination.Offset + 1 %> - <%= pagination.Offset + pagination.CurrentEntriesSize %> of <%= pagination.TotalEntriesSize %></span>
+    <span class="pl-3 page-sizes">
+      <a class="ml-3  <%= if (params["Limit"] == "10" || !params["Limit"]) { %>active<% } %>" href="<%= linkWith( linkWithout(request.URL.String(), "page"), {Limit: "10"}) %>">10</a>
+      <a class="ml-3  <%= if (params["Limit"] == "20") { %>active<% } %>" href="<%= linkWith( linkWithout(request.URL.String(), "page"), {Limit: "20"}) %>">20</a>
+      <a class="ml-3 mr-2 <%= if (params["Limit"] == "30") { %>active<% } %>" href="<%= linkWith( linkWithout(request.URL.String(), "page"), {Limit: "30"}) %>">30</a>
+      results per page.
+    </span>
+  </div>
+  <div class="paginator-wrapper d-flex align-items-center label-text-color">
+    <%= paginator(pagination, {wingLength: 3}) %>
+  </div>
+</div>

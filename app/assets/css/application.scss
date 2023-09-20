@@ -1,6 +1,15 @@
 @import "~bootstrap/scss/bootstrap.scss";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
+// Base
+@import "base/shortcuts";
+
+// Components
+@import "components/pagination";
+
+// Helpers
+@import "helpers/variables";
+
 // This is just some CSS for the welcome home landing page, feel free to 
 // remove it.
 .welcome {
