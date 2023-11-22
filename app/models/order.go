@@ -93,6 +93,14 @@ func GetBybitSymbol(currencyName string) bybit.SymbolV5 {
 		return bybit.SymbolV5TRBUSDT
 	case "HIFIUSDT":
 		return bybit.SymbolV5HIFIUSDT
+	case "OGNUSDT":
+		return bybit.SymbolV5OGNUSDT
+	case "AMBUSDT":
+		return bybit.SymbolV5AMBUSDT
+	case "LQTYUSDT":
+		return bybit.SymbolV5LQTYUSDT
+	case "LOOMUSDT":
+		return bybit.SymbolV5LOOMUSDT
 	}
 	return ""
 }
