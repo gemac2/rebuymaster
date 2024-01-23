@@ -44,7 +44,8 @@ func SetOrder(c buffalo.Context) error {
 		Type(futures.OrderTypeLimit).
 		Quantity(quantity).
 		Price(price).
-		TimeInForce(futures.TimeInForceTypeGTC)
+		TimeInForce(futures.TimeInForceTypeGTC).
+		PositionSide(futures.PositionSideTypeBoth)
 
 	resp, err := binanceOrder.Do(c)
 	if err != nil {

@@ -45,7 +45,7 @@
                 <label for="" class="text-white">Order Price</label>
                 <div class="input-group w-75 mb-3 h-40px">
                     <span class="input-group-text" id="basic-addon1">$</span>
-                    <input type="text" name="OrderPrice" <%= if (isEditForm) { %>value="<%= order.OrderPrice %>"<% } %> class="form-control only-numbers" data-decimals="5" data-padzeros="true" placeholder="Initial Price" aria-label="Order" aria-describedby="basic-addon1">
+                    <input type="text" name="OrderPrice" <%= if (isEditForm) { %>value="<%= order.OrderPrice %>"<% } %> class="form-control only-numbers" data-decimals="10" data-padzeros="true" placeholder="Initial Price" aria-label="Order" aria-describedby="basic-addon1">
                 </div>
             </div>
 

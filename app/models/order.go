@@ -101,6 +101,52 @@ func GetBybitSymbol(currencyName string) bybit.SymbolV5 {
 		return bybit.SymbolV5LQTYUSDT
 	case "LOOMUSDT":
 		return bybit.SymbolV5LOOMUSDT
+	case "JOEUSDT":
+		return bybit.SymbolV5JOEUSDT
+	case "BNTUSDT":
+		return bybit.SymbolV5BNTUSDT
+	case "POLYXUSDT":
+		return bybit.SymbolV5POLYXUSDT
+	case "MEMEUSDT":
+		return bybit.SymbolV5MEMEUSDT
+	case "ALGOUSDT":
+		return bybit.SymbolV5ALGOUSDT
+	case "10000LADYSUSDT":
+		return bybit.SymbolV510000LADYSUSDT
+	case "USTCUSDT":
+		return bybit.SymbolV5USTCUSDT
+	case "SUPERUSDT":
+		return bybit.SymbolV5SUPERUSDT
+	case "SEIUSDT":
+		return bybit.SymbolV5SEIUSDT
+	case "FRONTUSDT":
+		return bybit.SymbolV5FRONTUSDT
+	case "1000RATSUSDT":
+		return bybit.SymbolV51000RATSUSDT
+	case "GMTUSDT":
+		return bybit.SymbolV5GMTUSDT
+	case "BIGTIMEUSDT":
+		return bybit.SymbolV5BIGTIMEUSDT
+	case "SANDUSDT":
+		return bybit.SymbolV5SANDUSDT
+	case "LDOUSDT":
+		return bybit.SymbolV5LDOUSDT
+	case "LUNA2USDT":
+		return bybit.SymbolV5LUNA2USDT
+	case "XAIUSDT":
+		return bybit.SymbolV5XAIUSDT
+	case "BLURUSDT":
+		return bybit.SymbolV5BLURUSDT
+	case "CHZUSDT":
+		return bybit.SymbolV5CHZUSDT
+	case "NFPUSDT":
+		return bybit.SymbolV5NFPUSDT
+	case "ETCUSDT":
+		return bybit.SymbolV5ETCUSDT
+	case "UMAUSDT":
+		return bybit.SymbolV5UMAUSDT
+	case "MAVUSDT":
+		return bybit.SymbolV5MAVUSDT
 	}
 	return ""
 }
@@ -151,4 +197,22 @@ func (o Order) SetStopLossPrice() float64 {
 	}
 
 	return slPrice
+}
+
+func GetBybitPositionMode(orderType string) *bybit.PositionIdx {
+	position := 0
+	switch orderType {
+	case "Long":
+		position = int(bybit.PositionIdxHedgeBuy)
+		pointer := &position
+		return (*bybit.PositionIdx)(pointer)
+	case "Short":
+		position = int(bybit.PositionIdxHedgeSell)
+		pointer := &position
+		return (*bybit.PositionIdx)(pointer)
+	default:
+		position = int(bybit.PositionIdxOneWay)
+		pointer := &position
+		return (*bybit.PositionIdx)(pointer)
+	}
 }

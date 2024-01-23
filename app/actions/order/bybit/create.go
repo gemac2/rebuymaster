@@ -39,13 +39,16 @@ func Create(c buffalo.Context) error {
 	bybitSymbol := models.GetBybitSymbol(order.CurrencyName)
 	bybitSide := models.GetBybitSide(order.OrderType)
 
+	positionMode := models.GetBybitPositionMode(order.OrderType)
+
 	orderParams := bybit.V5CreateOrderParam{
-		Category:  bybit.CategoryV5Linear,
-		Symbol:    bybitSymbol,
-		Side:      bybitSide,
-		OrderType: bybit.OrderTypeLimit,
-		Qty:       quantity,
-		Price:     &price,
+		Category:    bybit.CategoryV5Linear,
+		Symbol:      bybitSymbol,
+		Side:        bybitSide,
+		OrderType:   bybit.OrderTypeLimit,
+		Qty:         quantity,
+		Price:       &price,
+		PositionIdx: positionMode,
 	}
 
 	if !order.IsBuybacksEnabled {
