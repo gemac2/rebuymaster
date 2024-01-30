@@ -24,6 +24,7 @@ func SetOrder(c buffalo.Context) error {
 	}
 
 	binanceSide := models.GetBinanceSide(order.OrderType)
+	positionSide := models.GetBinancePositionType(order.OrderType)
 
 	quantity := strconv.FormatFloat(order.CurrencyQuantity, 'f', -1, 64)
 	price := models.SetPriceForExchanges(order.CurrencyName, order.OrderPrice)
@@ -44,8 +45,8 @@ func SetOrder(c buffalo.Context) error {
 		Type(futures.OrderTypeLimit).
 		Quantity(quantity).
 		Price(price).
-		TimeInForce(futures.TimeInForceTypeGTC).
-		PositionSide(futures.PositionSideTypeBoth)
+		PositionSide(positionSide).
+		TimeInForce(futures.TimeInForceTypeGTC)
 
 	resp, err := binanceOrder.Do(c)
 	if err != nil {
@@ -59,12 +60,14 @@ func SetOrder(c buffalo.Context) error {
 		slPrice := order.SetStopLossPrice()
 		strSLPrice := models.SetPriceForExchanges(order.CurrencyName, slPrice)
 		binanceSLSide := models.GetBinanceStopLossSide(order.OrderType)
+		slPositionSide := models.GetBinanceStopLossPositionType(order.OrderType)
 		stopOrder := client.NewCreateOrderService().
 			Symbol(order.CurrencyName).
 			Side(binanceSLSide).
 			Type(futures.OrderTypeStopMarket).
 			Quantity(quantity).
-			StopPrice(strSLPrice)
+			StopPrice(strSLPrice).
+			PositionSide(slPositionSide)
 
 		respStop, err := stopOrder.Do(c)
 		if err != nil {

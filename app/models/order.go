@@ -147,6 +147,12 @@ func GetBybitSymbol(currencyName string) bybit.SymbolV5 {
 		return bybit.SymbolV5UMAUSDT
 	case "MAVUSDT":
 		return bybit.SymbolV5MAVUSDT
+	case "MANTAUSDT":
+		return bybit.SymbolV5MANTAUSDT
+	case "WIFUSDT":
+		return bybit.SymbolV5WIFUSDT
+	case "PROMUSDT":
+		return bybit.SymbolV5PROMUSDT
 	}
 	return ""
 }
@@ -173,6 +179,17 @@ func GetBinanceSide(orderType string) futures.SideType {
 	}
 }
 
+func GetBinancePositionType(orderType string) futures.PositionSideType {
+	switch orderType {
+	case "Long":
+		return futures.PositionSideTypeLong
+	case "Short":
+		return futures.PositionSideTypeShort
+	default:
+		return futures.PositionSideTypeBoth
+	}
+}
+
 func GetBinanceStopLossSide(orderType string) futures.SideType {
 	switch orderType {
 	case "Long":
@@ -181,6 +198,17 @@ func GetBinanceStopLossSide(orderType string) futures.SideType {
 		return futures.SideTypeBuy
 	default:
 		return futures.SideTypeBuy
+	}
+}
+
+func GetBinanceStopLossPositionType(orderType string) futures.PositionSideType {
+	switch orderType {
+	case "Long":
+		return futures.PositionSideTypeShort
+	case "Short":
+		return futures.PositionSideTypeLong
+	default:
+		return futures.PositionSideTypeBoth
 	}
 }
 
