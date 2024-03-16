@@ -27,8 +27,8 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Order Type</th>
                     <th scope="col">Currency Name</th>
+                    <th scope="col">Order Type</th>
                     <th scope="col">Order Price</th>
                     <th scope="col">Currency Quantity</th>
                     <th scope="col">Stop Loss</th>
@@ -40,8 +40,8 @@
                 <%= for (i, order) in orders { %>
                     <tr>
                         <th scope="row"><%= i + 1 %></th>
+                        <td><a href="/orders/<%= order.ID %>/details" class="text-decoration-none text-white"><%= order.CurrencyName %></a></td>
                         <td><%= order.OrderType %></td>
-                        <td><%= order.CurrencyName %></td>
                         <td><%= order.OrderPrice %></td>
                         <td><%= order.CurrencyQuantity %></td>
                         <td><%= order.StopLoss %> USDT</td>
@@ -54,12 +54,12 @@
                                 <div class="dropdown-menu dropdown-menu-right py-1 w-195px py-2 font-14 box-shadow box-radius-lg mt-n2" aria-labelledby="dropdownMenuButton">
                                     <a href="/orders/<%= order.ID %>/details" class="dropdown-item pt-2">View</a>
                                     <a href="<%= editOrderPath({order_id: order.ID}) %>" class="dropdown-item pt-2">Edit</a>
-                                    <a href="/orders/<%= order.ID %>/delete"
-                                        hx-delete="/orders/<%= order.ID %>/delete"
-                                        hx-confirm="Are you sure you want to remove this order?"
+                                    <button
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#DeleteOrder-<%= i %>"
                                         class="dropdown-item text-danger pb-2">
                                         Delete
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </td>
@@ -70,3 +70,28 @@
         <%= partial("/partials/pagination.plush.html") %>
     </div>
 <% } %>
+
+<%= for (i, order) in orders { %>
+    <div class="modal fade" id="DeleteOrder-<%= i %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Buybacks</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <span>Are you sure you want to remove this order?</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-danger"
+                        hx-delete="/orders/<%= order.ID %>/delete">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+

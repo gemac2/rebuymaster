@@ -14,7 +14,7 @@
   <%= stylesheetTag("application.css") %>
   <%= javascriptTag("application.js", {defer: true}) %>
 </head>
-<body class="h-full bg-dark <%= contentOf("body-class"){%><% } %>">
+<body class="h-full bg-app <%= contentOf("body-class"){%><% } %>">
 	<main class="container mt-3">
     <%= partial("/partials/header.plush.html")%>
 		<%= yield %>

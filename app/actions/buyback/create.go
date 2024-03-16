@@ -2,6 +2,7 @@ package buyback
 
 import (
 	"fmt"
+	"math"
 	"net/http"
 	"rebuymaster/app/models"
 	"time"
@@ -25,6 +26,8 @@ func Create(c buffalo.Context) error {
 		if i == 0 {
 			continue
 		}
+
+		buyback.Price = math.Round(buyback.Price*1e7) / 1e7
 
 		buyback.OrderID = order.ID
 		buyback.CreatedAt = time.Now()

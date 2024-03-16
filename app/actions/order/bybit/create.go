@@ -34,7 +34,7 @@ func Create(c buffalo.Context) error {
 	client := bybit.NewClient().WithAuth(apiKey, secretKey)
 
 	quantity := strconv.FormatFloat(order.CurrencyQuantity, 'f', -1, 64)
-	price := strconv.FormatFloat(order.OrderPrice, 'f', 4, 64)
+	price := strconv.FormatFloat(order.OrderPrice, 'f', 7, 64)
 
 	bybitSymbol := models.GetBybitSymbol(order.CurrencyName)
 	bybitSide := models.GetBybitSide(order.OrderType)

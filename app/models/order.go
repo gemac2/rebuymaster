@@ -153,6 +153,40 @@ func GetBybitSymbol(currencyName string) bybit.SymbolV5 {
 		return bybit.SymbolV5WIFUSDT
 	case "PROMUSDT":
 		return bybit.SymbolV5PROMUSDT
+	case "PENDLEUSDT":
+		return bybit.SymbolV5PENDLEUSDT
+	case "JUPUSDT":
+		return bybit.SymbolV5JUPUSDT
+	case "ZETAUSDT":
+		return bybit.SymbolV5ZETAUSDT
+	case "PYTHUSDT":
+		return bybit.SymbolV5PYTHUSDT
+	case "ALTUSDT":
+		return bybit.SymbolV5ALTUSDT
+	case "ARKUSDT":
+		return bybit.SymbolV5ARKUSDT
+	case "TIAUSDT":
+		return bybit.SymbolV5TIAUSDT
+	case "DYMUSDT":
+		return bybit.SymbolV5DYMUSDT
+	case "CTSIUSDT":
+		return bybit.SymbolV5CTSIUSDT
+	case "COTIUSDT":
+		return bybit.SymbolV5COTIUSDT
+	case "QIUSDT":
+		return bybit.SymbolV5QIUSDT
+	case "INJUSDT":
+		return bybit.SymbolV5INJUSDT
+	case "LSKUSDT":
+		return bybit.SymbolV5LSKUSDT
+	case "MYROUSDT":
+		return bybit.SymbolV5MYROUSDT
+	case "SPELLUSDT":
+		return bybit.SymbolV5SPELLUSDT
+	case "CHRUSDT":
+		return bybit.SymbolV5CHRUSDT
+	case "DOTUSDT":
+		return bybit.SymbolV5DOTUSDT
 	}
 	return ""
 }
