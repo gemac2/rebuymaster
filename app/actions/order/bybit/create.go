@@ -54,9 +54,7 @@ func Create(c buffalo.Context) error {
 	if !order.IsBuybacksEnabled {
 		slPrice := order.SetStopLossPrice()
 		strSLPrice := strconv.FormatFloat(slPrice, 'f', -1, 64)
-		strTP := strconv.FormatFloat(order.TakeProfit, 'f', -1, 64)
 		orderParams.StopLoss = &strSLPrice
-		orderParams.TakeProfit = &strTP
 	}
 
 	orderService := client.V5().Order()

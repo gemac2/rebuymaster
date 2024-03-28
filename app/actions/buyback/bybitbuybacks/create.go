@@ -61,9 +61,7 @@ func CreateBuybacks(c buffalo.Context) error {
 
 		if i == 0 {
 			slPrice := models.SetPriceForExchanges(order.CurrencyName, filterBuybacks[len(filterBuybacks)-1].StopLossPrice)
-			strTP := strconv.FormatFloat(order.TakeProfit, 'f', -1, 64)
 			orderParams.StopLoss = &slPrice
-			orderParams.TakeProfit = &strTP
 		}
 
 		orderService := client.V5().Order()

@@ -9,25 +9,25 @@ import (
 )
 
 type Order struct {
-	ID                 uuid.UUID `db:"id" json:"id"`
-	OrderType          string    `db:"order_type" json:"order_type"`
-	CurrencyName       string    `db:"currency_name" json:"currency_name"`
-	BuybackPercentage  float64   `db:"buyback_percentage" json:"buyback_percentage"`
-	CurrencyPercentage float64   `db:"currency_percentage" json:"currency_percentage"`
-	StopLoss           float64   `db:"stop_loss" json:"stop_loss"`
-	OrderPrice         float64   `db:"order_price" json:"order_price"`
-	CurrencyQuantity   float64   `db:"currency_quantity" json:"currency_quantity"`
-	Leverage           int       `db:"leverage" json:"leverage"`
-	CreatedAt          time.Time `db:"created_at" json:"created_at"`
-	UpdatedAt          time.Time `db:"updated_at" json:"updated_at"`
-	IsBuybacksEnabled  bool      `db:"is_buybacks_enabled" json:"is_buybacks_enabled"`
-	IsOrderPosition    bool      `db:"is_order_position" json:"is_order_position"`
-	StopLossTaken      bool      `db:"stop_loss_taken" json:"stop_loss_taken"`
-	TakeProfitAchieved bool      `db:"take_profit_achieved" json:"take_profit_achieved"`
-	TradeWon           bool      `db:"trade_won" json:"trade_won"`
-	TradeLoss          bool      `db:"trade_loss" json:"trade_loss"`
-	TakeProfit         float64   `db:"take_profit" json:"take_profit"`
-	Profit             float64   `db:"profit" json:"profit"`
+	ID                   uuid.UUID `db:"id" json:"id"`
+	OrderType            string    `db:"order_type" json:"order_type"`
+	CurrencyName         string    `db:"currency_name" json:"currency_name"`
+	BuybackPercentage    float64   `db:"buyback_percentage" json:"buyback_percentage"`
+	CurrencyPercentage   float64   `db:"currency_percentage" json:"currency_percentage"`
+	StopLoss             float64   `db:"stop_loss" json:"stop_loss"`
+	OrderPrice           float64   `db:"order_price" json:"order_price"`
+	CurrencyQuantity     float64   `db:"currency_quantity" json:"currency_quantity"`
+	Leverage             int       `db:"leverage" json:"leverage"`
+	CreatedAt            time.Time `db:"created_at" json:"created_at"`
+	UpdatedAt            time.Time `db:"updated_at" json:"updated_at"`
+	IsBuybacksEnabled    bool      `db:"is_buybacks_enabled" json:"is_buybacks_enabled"`
+	IsOrderPosition      bool      `db:"is_order_position" json:"is_order_position"`
+	StopLossTaken        bool      `db:"stop_loss_taken" json:"stop_loss_taken"`
+	TakeProfitAchieved   bool      `db:"take_profit_achieved" json:"take_profit_achieved"`
+	TradeWon             bool      `db:"trade_won" json:"trade_won"`
+	TradeLoss            bool      `db:"trade_loss" json:"trade_loss"`
+	TakeProfitPercentage float64   `db:"take_profit" json:"take_profit"`
+	Profit               float64   `db:"profit" json:"profit"`
 }
 
 // Orders struct
