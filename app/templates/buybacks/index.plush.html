@@ -55,7 +55,7 @@
                     <tr>
                         <th scope="row"><%= i + 1 %></th>
                         <td class="float-number"><%= buyback.Price %></td>
-                        <td class="float-number-two"><%= buyback.CurrencyAmount %></td>
+                        <td class="<%= if (order.CurrencyName == "BTCUSDT") { %>float-number-btc<% } else { %>float-number-two<% } %>"><%= buyback.CurrencyAmount %></td>
                         <td>$<span class="float-number-two"><%= buyback.Value %></span></td>
                         <td class="float-number"><%= buyback.StopLossPrice %></td>
                         <td class="float-number"><%= buyback.Average %></td>

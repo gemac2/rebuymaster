@@ -15,6 +15,11 @@ const buybacks = {
                 var formattedNumber = originalNumber.toFixed(2);
                 $(this).text(formattedNumber);
             });
+            $('#Buybacks').find('.float-number-btc').each(function () {
+                var originalNumber = parseFloat($(this).text());
+                var formattedNumber = originalNumber.toFixed(3);
+                $(this).text(formattedNumber);
+            });
         });
     },
 }
