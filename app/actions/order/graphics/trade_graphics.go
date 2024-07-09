@@ -36,7 +36,6 @@ func GenerateGraphics(c buffalo.Context) error {
 	c.Set("chartRateContent", template.HTML(chartWLRateBuffer.String()))
 	c.Set("chartStrategyContent", template.HTML(chartStrategyRateBuffer.String()))
 
-	// Aquí podrías retornar un mensaje de éxito o cualquier otra cosa que necesites
 	return c.Render(http.StatusOK, r.HTML("orders/graphics.plush.html"))
 }
 

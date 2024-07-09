@@ -197,8 +197,82 @@ func SetPriceForExchanges(currencyName string, buybackPrice float64) string {
 		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
 	case "SAGAUSDT":
 		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
-	default:
+	case "1000FLOKIUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
+	case "FRONTUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
+	case "UNIUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "FTMUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	case "AEVOUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "VETUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 6, 64)
+	case "GALUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	case "TIAUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	case "PIXELUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	case "WIFUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	case "ONDOUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	case "SUIUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	case "PHBUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	case "SANDUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	case "NEOUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "WAVESUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
+	case "OMNIUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 2, 64)
+	case "ARUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "ENAUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "ATOMUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "LEVERUSDT":
 		price = strconv.FormatFloat(buybackPrice, 'f', 7, 64)
+	case "RSRUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 6, 64)
+	case "ENSUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "JASMYUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 6, 64)
+	case "NOTUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 6, 64)
+	case "KEYUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 6, 64)
+	case "1000RATSUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
+	case "UMAUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "FILUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "PEOPLEUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
+	case "IOUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "RIFUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
+	case "1000LUNCUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
+	case "ORDIUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "ZENUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "OMUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
+	case "BONDUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	default:
+		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
 	}
 	return price
 }
