@@ -1,6 +1,6 @@
 module rebuymaster
 
-go 1.20
+go 1.23
 
 require (
 	github.com/adshao/go-binance/v2 v2.4.5
@@ -13,7 +13,7 @@ require (
 	github.com/gobuffalo/suite/v4 v4.0.4
 	github.com/gobuffalo/x v0.1.0
 	github.com/gofrs/uuid v4.3.1+incompatible
-	github.com/hirokisan/bybit/v2 v2.22.0
+	github.com/hirokisan/bybit/v2 v2.39.0
 	github.com/joho/godotenv v1.5.1
 	github.com/pkg/errors v0.9.1
 	github.com/wawandco/ox v0.12.2
@@ -47,12 +47,13 @@ require (
 	github.com/gobuffalo/tags/v3 v3.1.4 // indirect
 	github.com/gobuffalo/validate/v3 v3.3.3 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
+	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/css v1.0.0 // indirect
 	github.com/gorilla/handlers v1.5.1 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/gorilla/securecookie v1.1.1 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
-	github.com/gorilla/websocket v1.5.0 // indirect
+	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.13.0 // indirect
