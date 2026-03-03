@@ -271,6 +271,8 @@ func SetPriceForExchanges(currencyName string, buybackPrice float64) string {
 		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
 	case "BONDUSDT":
 		price = strconv.FormatFloat(buybackPrice, 'f', 3, 64)
+	case "PUMPBTCUSDT":
+		price = strconv.FormatFloat(buybackPrice, 'f', 5, 64)
 	default:
 		price = strconv.FormatFloat(buybackPrice, 'f', 4, 64)
 	}
